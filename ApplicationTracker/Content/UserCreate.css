@@ -1,0 +1,21 @@
+﻿#frmCreate {
+        background-color: #9cc7dc;
+        padding: 2em;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        width: 800px;
+        border-radius: 4px;
+    }
+
+    #btnAddActor {
+        margin-left: 4.5em;
+        background-color: #3a4660;
+        color: white;
+        height: 32px;
+        margin-top: 1.5em;
+    }
+
+    .error {
+        border-color: red !important;
+    }

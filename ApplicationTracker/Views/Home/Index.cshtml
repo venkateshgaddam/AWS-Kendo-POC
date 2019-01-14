@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+        img {
+            transition: all 1s;
+        }
+            img:hover {
+                transform: scale(1.1);
+            }
+</style>
+
+@Html.AntiForgeryToken()
+<div class="container-fluid placeholders">
+    <div class="row">
+        <div class="col-xs-4 col-md-2 placeholder">
+            <img class="img-responsive " alt="200x200" src="~/Images/Desert.jpg">
+        </div>
+        <div class="col-xs-10 col-md-3">
+            <p>
+                Create a item using the Kendo and telerik Controls here.
+            </p>
+
+            <p>
+                @(Html.Kendo()
+                .Button()
+                .Name("PrimaryButton")
+                .Content("Create")
+                .HtmlAttributes(new { @class = "textButton k-primary" }))
+            </p>
+        </div>
+
+        <div class="col-xs-10 col-md-3">
+            <p>
+                Update a item using the Kendo and telerik Controls here.
+            </p>
+            <p>
+                @(Html.Kendo()
+                .Button()
+                .Name("TextButton")
+                .Content("Update")
+                .HtmlAttributes(new { @class = "textButton" }))
+            </p>
+
+        </div>
+        <div class="col-xs-10 col-md-3">
+            <p>
+                Delete a item using the Kendo and telerik Controls here.
+            </p>
+
+            <p>
+                @(Html.Kendo()
+                .Button()
+                .Name("Button")
+                .Content("Delete")
+                .HtmlAttributes(new { @class = "textButton" }))
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-18 col-md-12">
+            @(Html.Kendo().Grid<ApplicationTracker.Models.MoviesModel>()
+                .Name("grid")
+                .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .PageSize(10)
+                        .ServerOperation(true)
+                        .Model(m => m.Id(p => p.Movie_Id))
+                        .Read(read => read.Action("Orders_Read", "Grid"))
+                        .Update(update => update.Action("Edit", "Grid"))
+                        .Destroy(d => d.Action("Delete", "Grid"))
+                )
+                    //.ClientRowTemplate(grid =>  this is example of client side row template
+                    //     "<tr >" 
+                    //        +"<td style =width:10px>#: Producer #</td>" +
+                    //      "</tr>"
+                    //)
+                .Columns(columns =>
+                {
+                    columns.Bound(p => p.Movie_Id).Filterable(false).Width(50).Title("Id");
+                    columns.Bound(p => p.MovieName);
+                    columns.Bound(p => p.Producer);
+                    columns.Bound(p => p.DateOfRelease).Format("{0:MM/dd/yyyy}");
+                    columns.Bound(p => p.Color)
+                        .ClientTemplate("<div style=\"background-color:Green; width:50px;padding: 5px;margin-left: 45px;\">&nbsp;</div>")
+                        .Width(200);
+
+                    columns.Command(p =>
+                            {
+                                p.Edit();
+                                p.Destroy();
+                            });
+                })
+                .RowAction(row =>
+                    {
+                        if (row.DataItem.MovieName == "Avengers")
+                        {
+                            row.HtmlAttributes["style"] = "background-color:pink";
+                        }
+                        else
+                        {
+                            row.HtmlAttributes["Style"] = "background-color:Blue";
+                        }
+                    
+                    }
+                )
+                .Editable(a => a.Mode(GridEditMode.InLine))
+                .Pageable()
+                .Sortable()
+                .Scrollable()
+                .Filterable()
+                .HtmlAttributes(new { style = "height:450px;margin-bottom:10px;" })
+            )
+        </div>
+    </div>
+</div>
+

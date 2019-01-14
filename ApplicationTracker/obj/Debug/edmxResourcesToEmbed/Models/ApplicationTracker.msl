@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="jagdevModelStoreContainer" CdmEntityContainer="jagdevEntities">
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="jagdevModel.Movie">
+        <MappingFragment StoreEntitySet="Movies">
+          <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
+          <ScalarProperty Name="MovieName" ColumnName="MovieName" />
+          <ScalarProperty Name="DateOfRelease" ColumnName="DateOfRelease" />
+          <ScalarProperty Name="Producer" ColumnName="Producer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

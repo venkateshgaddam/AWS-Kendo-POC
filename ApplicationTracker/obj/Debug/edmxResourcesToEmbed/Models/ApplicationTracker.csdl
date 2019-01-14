@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="jagdevModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="jagdevEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Movies" EntityType="jagdevModel.Movie" />
+  </EntityContainer>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="Movie_Id" />
+    </Key>
+    <Property Name="Movie_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="MovieName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="DateOfRelease" Type="DateTime" Precision="0" />
+    <Property Name="Producer" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

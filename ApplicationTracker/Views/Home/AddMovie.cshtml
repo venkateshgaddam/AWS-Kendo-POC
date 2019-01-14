@@ -1,0 +1,55 @@
+﻿@model KendoCRUD.Models.MoviesModel
+
+@{
+    ViewBag.Title = "AddMovie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+        function AddUser() {
+
+            var userData = $("#frmAdd").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/AddMovie",
+                data: userData,
+                success: function myfunction(response) {
+                    alert("You are done");
+                }
+            })
+        }
+</script>
+
+<form id="frmAdd">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <label>FirstName</label>
+                    @Html.Kendo().TextBox().Name("FirstName").HtmlAttributes(new { @class = "form-control", @id = "txtName" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>LastName</label>
+                    @Html.Kendo().TextBox().Name("LastName").HtmlAttributes(new { @class = "form-control", @id = "txtLastName" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>EmployeeId</label>
+                    @Html.Kendo().TextBox().Name("EmployeeId").HtmlAttributes(new { @class = "form-control", @id = "EmployeeId" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Kendo().Button().Name("AddUser").Content("Submit").Events(e => e.Click("AddUser")).HtmlAttributes(new { @class = "btn btn-primary", style = "background-color:#3a4660; color:white", type = "button" })
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+</form>

@@ -1,0 +1,166 @@
+﻿@model KendoCRUD.Models.MoviesModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Manual/UserCreate.css" rel="stylesheet" />
+@*<a href="~/Views/HtmlHelpers.cshtml">~/Views/HtmlHelpers.cshtml</a>*@
+<script type="text/javascript">
+
+    var strVariable;
+
+    function myfunction() {
+
+        var movieName = $("#txtMovieName").val();
+
+        var producerName = $("#txtProducerName").val();
+
+        var releaseDate = $("#releaseDate").val();
+
+        var regex = /^[a-zA-Z0-9]+$/;
+
+        var isAllValidationsPassed = true;
+
+        var isValid = regex.test(producerName)
+
+        if (movieName == "") {
+            $(".clsValidate").hide()
+            $("#txtMovieName").addClass("error");
+            isAllValidationsPassed = false;
+        }
+        else {
+            if (!isValid) {
+                kendo.alert("Only Alphanumerics are allowed");
+                isAllValidationsPassed = false;
+            }
+        }
+        if (producerName == "") {
+            $("#txtProducerName").addClass("error");
+            isAllValidationsPassed = false;
+        }
+        if (releaseDate == "") {
+            isAllValidationsPassed = false;
+            $(".k-picker-wrap").css({ 'border-color': 'red' });
+            $("#datePicker").addClass("error");
+        }
+        if (isAllValidationsPassed) {
+            document.getElementById("formCreate").submit();
+        }
+    }
+</script>
+
+<div id="frmCreate">
+    @using (@Html.BeginForm("Create", "Home", FormMethod.Post, new { id = "formCreate" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="form-group">
+                        <tr>
+                            <td>
+                                <label>Movie Name </label>
+                                <input type="text" class="form-control" id="txtMovieName" name="moviename" placeholder="Moive Name" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Producer </label>
+                                <input type="text" class="form-control" id="txtProducerName" name="producer" placeholder="Producer" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Actor </label>
+                                <input type="text" class="form-control" id="txtActor" name="Actor" placeholder="Actor" />
+                            </td>
+                            @*<td>
+                                @Html.Kendo().Button().Name("AddNewActor").Content("Add Actor").HtmlAttributes(new { @class = "btn btn-primary", @id = "btnAdd",style="margin-right=8.5em ;background-color:#3a4660; color:white; margin-right=2em; height:25px;" })
+                                <a href="#" id="btnAddActor" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add</a>
+                            </td>*@
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Date of Release </label>
+                                <div id="datePicker">
+                                    @Html.Kendo().DatePicker().Name("datepicker").HtmlAttributes(new { @class = "form-control", style = "border-color:red;display:block;width:100%;", id = "releaseDate" })
+                                    @*<input type="text" class="form-control" id="txtReleaseDate" name="dateofRelease" />*@
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>
+                                    @(Html.Kendo().Button().Name("Button").Content("Submit").Events(e => e.Click("myfunction")).HtmlAttributes(new { @class = "textButton", type = "button", style = "background-color:#3a4660; color:white", id = "btnSubmit" }))
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+
+                                    <h2 class="modal-title"></h2>
+                                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <form id="frmAdd">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label>FirstName</label>
+                                                        @Html.Kendo().TextBox().Name("FirstName").HtmlAttributes(new { @class = "form-control", @id = "txtName" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label>LastName</label>
+                                                        @Html.Kendo().TextBox().Name("LastName").HtmlAttributes(new { @class = "form-control", @id = "txtLastName" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label>EmployeeId</label>
+                                                        @Html.Kendo().TextBox().Name("EmployeeId").HtmlAttributes(new { @class = "form-control", @id = "EmployeeId" })
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        @Html.Kendo().Button().Name("AddUser").Content("Submit").Events(e => e.Click("AddUser")).HtmlAttributes(new { @class = "btn btn-primary", style = "background-color:#3a4660; color:white", type = "button" })
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+</div>

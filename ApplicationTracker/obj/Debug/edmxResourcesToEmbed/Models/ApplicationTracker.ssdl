@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="jagdevModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="jagdevModelStoreContainer">
+    <EntitySet Name="Movies" EntityType="jagdevModel.Store.Movies" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="Movie_Id" />
+    </Key>
+    <Property Name="Movie_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MovieName" Type="nvarchar(max)" />
+    <Property Name="DateOfRelease" Type="date" />
+    <Property Name="Producer" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+</Schema>

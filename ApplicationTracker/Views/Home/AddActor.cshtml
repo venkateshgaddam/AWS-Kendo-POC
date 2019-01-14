@@ -1,0 +1,65 @@
+﻿@model KendoCRUD.Models.TechnicianModel
+
+@{
+    ViewBag.Title = "AddActor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div class="container">
+    <a  id="btnAddActor" class="btn btn-info" data-toggle="modal" data-target="#myModal">Add</a>
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 class="modal-title"></h2>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="frmAdd">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label>FirstName</label>
+                                    @Html.Kendo().TextBox().Name("FirstName").HtmlAttributes(new { @class = "form-control", @id = "txtName" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>LastName</label>
+                                    @Html.Kendo().TextBox().Name("LastName").HtmlAttributes(new { @class = "form-control", @id = "txtLastName" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>EmployeeId</label>
+                                    @Html.Kendo().TextBox().Name("EmployeeId").HtmlAttributes(new { @class = "form-control", @id = "EmployeeId" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.Kendo().Button().Name("AddUser").Content("Submit").Events(e => e.Click("AddUser")).HtmlAttributes(new { @class = "btn btn-primary", style = "background-color:#3a4660; color:white", type = "button" })
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+    </div>

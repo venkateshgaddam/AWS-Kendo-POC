@@ -1,0 +1,41 @@
+﻿@using KendoCRUD.Models;
+
+@model KendoCRUD.Models.MoviesModel
+
+@{
+    ViewBag.Title = "CreateAlbums";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //var producers = new string[] {"Walt Disney","Warner Bros","Eros Now"};
+}
+
+<h2>CreateAlbums</h2>
+
+<div class="col-md-6">
+    @using (@Html.BeginForm("CreateAlbums","Home",FormMethod.Post))
+    {
+    
+    <h2>Create Albums</h2>
+    <div class="row">
+        @Html.LabelFor(model=>model.MovieName)
+        @Html.TextBoxFor(model => model.MovieName, new { @class = "form-control" })
+    </div>
+
+    <div class="row">
+        @Html.LabelFor(model=>model.DateOfRelease)
+        @Html.Kendo().DatePickerFor(model => model.DateOfRelease).Format("MM/DD/YYYY");
+    </div>
+
+    <div class="row">
+        @Html.LabelFor(model=>model.Producer)
+        @Html.Kendo().AutoCompleteFor(model => model.Producer).Filter("StartsWith").Placeholder("Producer").BindTo(ViewBag.ProducersList);
+    </div>
+        
+    <div class="row">
+        @Html.LabelFor(model=>model.Producer)
+        @Html.Kendo().ColorPickerFor(model => model.Color);
+    </div>
+            
+    }
+
+</div>
+

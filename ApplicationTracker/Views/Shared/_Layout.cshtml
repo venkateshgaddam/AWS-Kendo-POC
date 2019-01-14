@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - My Telerik MVC Application</title>
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <link href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.common-material.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2018.3.1017/styles/kendo.material.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/jquery.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/jszip.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/kendo.all.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2018.3.1017/js/kendo.aspnetmvc.min.js"></script>
+	
+    @*<link href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.metro.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jszip.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.aspnetmvc.min.js"></script>*@
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+</head>
+<body style="background-color:slategrey">
+    <div class="container-fluid">
+        <div class="row k-header" style="background-color:#3a4660">
+            <h1>Sample App</h1>
+            <div id="responsive-panel">
+                @(Html.Kendo().Menu()
+                  .Name("Menu")
+                  .Items(items =>
+                  {
+                      items.Add().Url(Url.Action("Index", "Home")).Text("Home");
+                      items.Add().Url(Url.Action("Albums", "Home")).Text("Albums");
+                      items.Add().Url(Url.Action("Create", "Home")).Text("Create");
+                      items.Add().Url(Url.Action("ExportToExcel", "Grid")).Text("ExportToExcel");
+                      items.Add().Text("Item 5");
+                      items.Add().Text("Disabled item").Enabled(false);
+                  })
+                )
+            </div>
+            <button id="configure" class="k-rpanel-toggle k-button k-primary btn-toggle"><span class="k-icon k-i-hbars k-i-menu"></span></button>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-18 col-md-12">
+                <div id="grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <p class="text-muted">Copyright © @DateTime.Now.Year Virtusa Software Corporation and/or its subsidiaries or affiliates. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $("#responsive-panel").kendoResponsivePanel({
+                breakpoint: 768,
+                autoClose: false,
+                orientation: "top"
+            });
+        });
+        function onclick(e) {
+            $("#responsive-panel").getKendoResponsivePanel().toggle();
+        }
+    </script>
+</body>
+</html>

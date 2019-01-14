@@ -1,0 +1,20 @@
+﻿@using KendoCRUD.Models
+
+@model IEnumerable<MoviesModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Albums</h2>
+
+<div class="jumbotron">
+    <ul>
+        @foreach(var item in Model){
+        
+        <li style="color:@item.Color" >@item.MovieName,@item.DateOfRelease,@item.Producer</li>
+        }
+    </ul>
+</div>
+
